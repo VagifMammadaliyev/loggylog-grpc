@@ -1,0 +1,22 @@
+syntax = "proto3"
+
+// Simple logger service
+service Logger {
+    rpc Log (LogRequest) returns LogReply {}
+}
+
+// Simple logging request object
+message LogRequest {
+    // Log level, usually one of: debug, info, warning, error
+    string level = 1;
+    string msg = 2;
+    // Timestamp string, may contain a timezone information
+    string timestamp = 3;
+}
+
+// Reply to logging request
+message LogReply {
+    bool success = 1;
+    // Error code of success is not true
+    string error = 2;
+}
