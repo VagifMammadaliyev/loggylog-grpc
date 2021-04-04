@@ -10,5 +10,5 @@ package managers.
 ## How to generate code?
 
 ```sh
-./codegen python  # to generete python code
+make python  # generate python code
 ```
