@@ -1,8 +1,9 @@
-syntax = "proto3"
+syntax = "proto3";
 
 // Simple logger service
 service Logger {
-    rpc Log (LogRequest) returns LogReply {}
+    // Saves a log
+    rpc Log (LogRequest) returns (LogReply) {};
 }
 
 // Simple logging request object

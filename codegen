@@ -1,0 +1,21 @@
+#!/usr/bin/env sh
+
+if [ -z "$1" ]
+then
+    echo "Language is not specified"
+    exit 1
+fi
+
+echo "Generating [$1] code..."
+python -m grpc_tools.protoc \
+    -I./protos \
+    --python_out=./$1_gen/ \
+    --grpc_python_out=./$1_gen \
+    ./protos/*
+
+if [ $? -ne 0 ]
+then
+    exit $?
+fi
+
+echo "Done!"
