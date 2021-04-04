@@ -6,12 +6,17 @@ then
     exit 1
 fi
 
+out_folder=./$1_gen/
+
 echo "Generating [$1] code..."
-python -m grpc_tools.protoc \
-    -I./protos \
-    --python_out=./$1_gen/ \
-    --grpc_python_out=./$1_gen \
-    ./protos/*
+if [ "$1" == "python" ]
+then
+    python -m grpc_tools.protoc \
+        -I./protos \
+        --python_out=$out_folder \
+        --grpc_python_out=$out_folder \
+        ./protos/*
+fi
 
 if [ $? -ne 0 ]
 then

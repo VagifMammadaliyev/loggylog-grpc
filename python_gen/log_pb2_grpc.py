@@ -6,7 +6,8 @@ import log_pb2 as log__pb2
 
 
 class LoggerStub(object):
-    """Simple logger service"""
+    """Simple logger service
+    """
 
     def __init__(self, channel):
         """Constructor.
@@ -15,65 +16,55 @@ class LoggerStub(object):
             channel: A grpc.Channel.
         """
         self.Log = channel.unary_unary(
-            "/Logger/Log",
-            request_serializer=log__pb2.LogRequest.SerializeToString,
-            response_deserializer=log__pb2.LogReply.FromString,
-        )
+                '/Logger/Log',
+                request_serializer=log__pb2.LogRequest.SerializeToString,
+                response_deserializer=log__pb2.LogReply.FromString,
+                )
 
 
 class LoggerServicer(object):
-    """Simple logger service"""
+    """Simple logger service
+    """
 
     def Log(self, request, context):
-        """Saves a log"""
+        """Saves a log
+        """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
-        context.set_details("Method not implemented!")
-        raise NotImplementedError("Method not implemented!")
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
 
 
 def add_LoggerServicer_to_server(servicer, server):
     rpc_method_handlers = {
-        "Log": grpc.unary_unary_rpc_method_handler(
-            servicer.Log,
-            request_deserializer=log__pb2.LogRequest.FromString,
-            response_serializer=log__pb2.LogReply.SerializeToString,
-        ),
+            'Log': grpc.unary_unary_rpc_method_handler(
+                    servicer.Log,
+                    request_deserializer=log__pb2.LogRequest.FromString,
+                    response_serializer=log__pb2.LogReply.SerializeToString,
+            ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
-        "Logger", rpc_method_handlers
-    )
+            'Logger', rpc_method_handlers)
     server.add_generic_rpc_handlers((generic_handler,))
 
 
-# This class is part of an EXPERIMENTAL API.
+ # This class is part of an EXPERIMENTAL API.
 class Logger(object):
-    """Simple logger service"""
+    """Simple logger service
+    """
 
     @staticmethod
-    def Log(
-        request,
-        target,
-        options=(),
-        channel_credentials=None,
-        call_credentials=None,
-        insecure=False,
-        compression=None,
-        wait_for_ready=None,
-        timeout=None,
-        metadata=None,
-    ):
-        return grpc.experimental.unary_unary(
-            request,
+    def Log(request,
             target,
-            "/Logger/Log",
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/Logger/Log',
             log__pb2.LogRequest.SerializeToString,
             log__pb2.LogReply.FromString,
-            options,
-            channel_credentials,
-            insecure,
-            call_credentials,
-            compression,
-            wait_for_ready,
-            timeout,
-            metadata,
-        )
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
