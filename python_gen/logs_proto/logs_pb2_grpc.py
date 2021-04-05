@@ -2,7 +2,7 @@
 """Client and server classes corresponding to protobuf-defined services."""
 import grpc
 
-import log_pb2 as log__pb2
+from logs_proto import logs_pb2 as logs__proto_dot_logs__pb2
 
 
 class LoggerStub(object):
@@ -17,8 +17,8 @@ class LoggerStub(object):
         """
         self.Log = channel.unary_unary(
                 '/Logger/Log',
-                request_serializer=log__pb2.LogRequest.SerializeToString,
-                response_deserializer=log__pb2.LogReply.FromString,
+                request_serializer=logs__proto_dot_logs__pb2.LogRequest.SerializeToString,
+                response_deserializer=logs__proto_dot_logs__pb2.LogReply.FromString,
                 )
 
 
@@ -38,8 +38,8 @@ def add_LoggerServicer_to_server(servicer, server):
     rpc_method_handlers = {
             'Log': grpc.unary_unary_rpc_method_handler(
                     servicer.Log,
-                    request_deserializer=log__pb2.LogRequest.FromString,
-                    response_serializer=log__pb2.LogReply.SerializeToString,
+                    request_deserializer=logs__proto_dot_logs__pb2.LogRequest.FromString,
+                    response_serializer=logs__proto_dot_logs__pb2.LogReply.SerializeToString,
             ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
@@ -64,7 +64,7 @@ class Logger(object):
             timeout=None,
             metadata=None):
         return grpc.experimental.unary_unary(request, target, '/Logger/Log',
-            log__pb2.LogRequest.SerializeToString,
-            log__pb2.LogReply.FromString,
+            logs__proto_dot_logs__pb2.LogRequest.SerializeToString,
+            logs__proto_dot_logs__pb2.LogReply.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)

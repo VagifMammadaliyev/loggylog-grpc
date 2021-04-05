@@ -8,6 +8,8 @@ verify_ssl = true
 [packages]
 grpcio = "~=1.36.1"
 grpcio-tools = "~=1.36.1"
+twine = "*"
+build = "*"
 
 [requires]
 python_version = "3.9"
