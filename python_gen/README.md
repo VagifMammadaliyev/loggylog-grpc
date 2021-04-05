@@ -12,7 +12,7 @@ pip install loggylog-grpc
 ## Usage
 
 ```python
-from loggylog_grpc import logs_pb2_grpc, logs_pb2
+from logs_proto import logs_pb2_grpc, logs_pb2
 
 # ... your code here ...
 ```
