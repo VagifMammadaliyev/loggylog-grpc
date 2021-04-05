@@ -8,7 +8,7 @@ with open("python_reqs.txt", "r", encoding="utf-8") as reqs_file:
 
 setuptools.setup(
     name="loggylog_grpc",
-    version="0.1.2",
+    version="0.1.3",
     author="Vagif Mammadaliyev",
     description="Generated code for loggylog related python code",
     long_description=long_description,
